@@ -2,18 +2,18 @@ class Santa
   def initialize(path = '')
     @floor = 0
     @position = 0
-    @path = path
+    @paths = path.chars
   end
 
   def deliver
-    @path.each_char do |direction|
+    @paths.each do |direction|
       go(direction)
     end
     self
   end
 
   def deliver_to_basement
-    @path.chars.each_with_index do |direction, position|
+    @paths.each_with_index do |direction, position|
       go(direction)
 
       if @floor == -1

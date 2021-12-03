@@ -1,16 +1,15 @@
-class Submarine
+class SubmarineDiagnostic
   def initialize(report)
-    @report = report
+    @reports = report.split.map(&:strip)
   end
 
   def power_consumption
     gamma_rate = '0b'
     epsilon_rate = '0b'
 
-    report = @report.split
-    report.first.strip.length.times do |i|
-      gamma_rate[i + 2] = common_bit(report, i)
-      epsilon_rate[i + 2] = common_bit(report, i, 'least')
+    @reports.first.length.times do |i|
+      gamma_rate[i + 2] = common_bit(@reports, i)
+      epsilon_rate[i + 2] = common_bit(@reports, i, 'least')
     end
 
     gamma_rate.to_i(2) * epsilon_rate.to_i(2)
@@ -20,10 +19,9 @@ class Submarine
     oxygen_generator_rating = '0b'
     co2_scrubber_rating = '0b'
 
-    report = @report.split
-    oxygen_result = report.dup
-    co2_result = report.dup
-    report.first.strip.length.times do |i|
+    oxygen_result = @reports.dup
+    co2_result = @reports.dup
+    @reports.length.times do |i|
       oxygen_result = calculate_result(oxygen_result, i, 'most')
       co2_result = calculate_result(co2_result, i, 'least')
 
