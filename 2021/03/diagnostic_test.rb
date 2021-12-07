@@ -1,5 +1,11 @@
-require '../../assert'
-require './submarine_diagnostic'
+#!/usr/bin/env ruby
+
+basedir = File.dirname(File.expand_path(__FILE__))
+$: << basedir
+$: << File.expand_path('../..', basedir)
+
+require 'assert'
+require 'submarine_diagnostic'
 
 INPUT = <<IPT
 00100
@@ -16,7 +22,7 @@ INPUT = <<IPT
 01010
 IPT
 
-puzzle_input = File.read('./input.txt')
+puzzle_input = File.read("#{basedir}/input.txt")
 
 assert_equal "Power consumption isn't as expected", SubmarineDiagnostic.new(INPUT).power_consumption, 198
 assert_equal "Power consumption isn't as expected", SubmarineDiagnostic.new(puzzle_input).power_consumption, 3309596

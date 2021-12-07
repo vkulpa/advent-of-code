@@ -1,5 +1,10 @@
-require '../../assert'
-require './submarine'
+#!/usr/bin/env ruby
+
+basedir = File.dirname(File.expand_path(__FILE__))
+$: << basedir
+$: << File.expand_path('../..', basedir)
+require 'assert'
+require 'submarine'
 
 INPUT = <<IPT
 forward 5
@@ -10,7 +15,7 @@ down 8
 forward 2
 IPT
 
-puzzle = File.read('./input.txt')
+puzzle = File.read("#{basedir}/input.txt")
 
 assert_equal "Submarine position is wrong", Submarine.new(INPUT).calculate.position, 150
 assert_equal "Submarine position is wrong", Submarine.new(puzzle).calculate.position, 1728414

@@ -1,5 +1,11 @@
-require '../../assert'
-require './hydrothermal_vent'
+#!/usr/bin/env ruby
+
+basedir = File.dirname(File.expand_path(__FILE__))
+$: << basedir
+$: << File.expand_path('../..', basedir)
+
+require 'assert'
+require 'hydrothermal_vent'
 
 INPUT = <<IPT
 0,9 -> 5,9
@@ -14,7 +20,7 @@ INPUT = <<IPT
 5,5 -> 8,2
 IPT
 
-puzzle_input = File.read('./input.txt')
+puzzle_input = File.read("#{basedir}/input.txt")
 
 assert_equal "Number of the most dangerous areas isn't as expected", HydrothermalVent.new(INPUT).calculate.total_overlap, 5
 assert_equal "Number of the most dangerous areas isn't as expected", HydrothermalVent.new(puzzle_input).calculate.total_overlap, 6007

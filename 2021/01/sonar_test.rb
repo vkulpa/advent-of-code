@@ -1,5 +1,11 @@
-require '../../assert'
-require './sonar'
+#!/usr/bin/env ruby
+
+basedir = File.dirname(File.expand_path(__FILE__))
+$: << basedir
+$: << File.expand_path('../..', basedir)
+
+require 'assert'
+require 'sonar'
 
 INPUT = <<IPT
 199
@@ -14,7 +20,7 @@ INPUT = <<IPT
 263
 IPT
 
-puzzle_input = File.read('./input.txt')
+puzzle_input = File.read("#{basedir}/input.txt")
 
 assert_equal "Sonar measurements aren't as expected", Sonar.new(INPUT).calculate.total, 7
 assert_equal "Sonar measurements aren't as expected", Sonar.new(puzzle_input).calculate.total, 1696
