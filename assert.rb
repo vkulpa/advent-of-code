@@ -5,6 +5,15 @@ def assert_equal(message, actual, expected)
   end
 end
 
+def assert_risen(exception = RuntimeError)
+  begin
+    yield
+    $test_failed = true
+  rescue exception
+    # Ignored
+  end
+end
+
 def failed?
   $test_failed
 end
